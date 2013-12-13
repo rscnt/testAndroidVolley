@@ -84,7 +84,7 @@ public class UserDetailActivity extends Activity implements
 			public void onClick(View v) {
 
 				usr.setUsername(editTxtUserName.getText().toString());
-				usr.setPassword("ABCDE12345");
+				usr.setPassword(editTxtPassword.getText().toString());
 				usr.setEmail(editTxtEmail.getText().toString());
 				usr.setCountry_id(1L);
 

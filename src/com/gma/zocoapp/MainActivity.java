@@ -4,6 +4,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response.Listener;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.facebook.UiLifecycleHelper;
+import com.gma.zocoapp.FacebookFragment.OnFragmentInteractionListener;
 import com.gma.zocoapp.http.ZocoClient;
 import com.gma.zocoapp.models.User;
 import com.gma.zocoapp.models.UserList;
@@ -14,6 +16,7 @@ import com.google.android.gms.common.GooglePlayServicesClient.ConnectionCallback
 import com.google.android.gms.common.GooglePlayServicesClient.OnConnectionFailedListener;
 import com.google.android.gms.plus.PlusClient;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,6 +25,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.IntentSender.SendIntentException;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -36,10 +40,10 @@ import android.widget.Toast;
 
 // TODO: This should be a ListActivity
 // TODO: Work on abstraction
-public class MainActivity extends Activity implements OnClickListener,
+public class MainActivity extends FragmentActivity implements OnClickListener,
 		Response.ErrorListener, Listener<UserList>,
 		PlusClient.ConnectionCallbacks, PlusClient.OnConnectionFailedListener,
-		PlusClient.OnAccessRevokedListener {
+		PlusClient.OnAccessRevokedListener, OnFragmentInteractionListener {
 
 	ListView lstVw;
 	Button btnToProductsListActivity;
@@ -52,7 +56,8 @@ public class MainActivity extends Activity implements OnClickListener,
 	MainActivity that = this;
 
 	// GPlus Client Provided by google play services.
-	// private PlusClient mPlusClient;
+	// private PlusClient mPlusClient; {{{
+
 	private PlusClient mPlusClient;
 	private ConnectionResult mConnectionResult;
 	private TextView mSignInStatus;
@@ -64,10 +69,32 @@ public class MainActivity extends Activity implements OnClickListener,
 	private static final int REQUEST_CODE_SIGN_IN = 1;
 	private static final int REQUEST_CODE_GET_GOOGLE_PLAY_SERVICES = 2;
 
+	// }}}
+
+	// Facebook {{{
+
+	private FacebookFragment fbFragment;
+
+	// }}}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		// Facebook {{{
+
+		if (savedInstanceState == null) {
+			fbFragment = new FacebookFragment();
+			getSupportFragmentManager().beginTransaction()
+					.add(android.R.id.content, fbFragment).commit();
+		} else {
+			fbFragment = (FacebookFragment) getSupportFragmentManager()
+					.findFragmentById(android.R.id.content);
+		}
+
+		// }}}
+
 		zocoClnt = new ZocoClient(this); // TODO: Replace to just one ZocoClient
 											// in the application.
 		zocoClnt.getAPI().setOAuthToken();
@@ -315,6 +342,11 @@ public class MainActivity extends Activity implements OnClickListener,
 
 	@Override
 	public void onErrorResponse(VolleyError volleyError) {
+	}
+
+	@Override
+	public void onFragmentInteraction(Uri uri) {
+		Log.d(MainActivity.class.getCanonicalName(), uri.toString());
 	}
 
 	// }}}
