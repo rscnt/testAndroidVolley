@@ -22,12 +22,12 @@ public final class Res {
 	public static void setUrlBase(String urlBase) {
 		Res.urlBase = urlBase;
 	}
-	
+
 	public static String getUrlProducts() {
-		return urlBase + "products/";
+		return urlBase + "products";
 	}
 
 	public static String getUrlUsers() {
-		return urlBase + "users/";
+		return urlBase + "users";
 	}
 }

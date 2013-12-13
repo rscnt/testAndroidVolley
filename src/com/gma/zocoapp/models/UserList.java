@@ -30,7 +30,7 @@ public class UserList extends ArrayList<User> {
 		return gson.toJson(this);
 	}
 
-	public String getUrl(){
-		return Res.getUrlProducts();
+	public String getUrl() {
+		return Res.getUrlUsers();
 	}
 }

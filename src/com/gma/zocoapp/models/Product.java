@@ -201,6 +201,6 @@ public class Product {
 	}
 
 	public final String getUrl() {
-		return Res.getUrlProducts() + this.id + "/";
+		return Res.getUrlProducts() + "/" + this.id;
 	}
 }

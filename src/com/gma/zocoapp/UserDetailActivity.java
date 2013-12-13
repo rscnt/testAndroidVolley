@@ -84,11 +84,10 @@ public class UserDetailActivity extends Activity implements
 			public void onClick(View v) {
 
 				usr.setUsername(editTxtUserName.getText().toString());
-				usr.setFirst_name(editTxtFirstName.getText().toString());
-				usr.setLast_name(editTxtLastName.getText().toString());
 				usr.setPassword(editTxtPassword.getText().toString());
 				usr.setEmail(editTxtEmail.getText().toString());
 				usr.setCountry_id(1L);
+				usr.setCode("ABUD1");
 
 				if (usr.isNew()) {
 					zocoClnt.getAPI().postUser(usr, that, that);
@@ -145,12 +144,13 @@ public class UserDetailActivity extends Activity implements
 
 	@Override
 	public void onResponse(User user) {
-		Log.d("RESPONSE : ", user.toJSON());
+		Log.d(UserDetailActivity.class.getCanonicalName(), user.toJSON());
 	}
 
 	@Override
 	public void onErrorResponse(VolleyError volleyError) {
-		volleyError.printStackTrace();
+		Log.d(UserDetailActivity.class.getCanonicalName(),
+				volleyError.toString());
 	}
 
 }

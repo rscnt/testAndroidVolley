@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.gma.zocoapp.utils.Res;
 import com.google.gson.Gson;
+import com.gma.zocoapp.R;
 
 public class ProductList extends ArrayList<Product> {
 	/**
@@ -17,6 +18,6 @@ public class ProductList extends ArrayList<Product> {
 	}
 
 	public final String getUrl() {
-		return Res.getUrlBase() + "products/";
+		return Res.getUrlProducts();
 	}
 }

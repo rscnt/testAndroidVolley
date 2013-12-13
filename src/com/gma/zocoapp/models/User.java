@@ -230,7 +230,7 @@ public class User {
 	}
 
 	public String getUrl() {
-		return Res.getUrlUsers() + this.id + "/";
+		return Res.getUrlUsers() + "/" + this.id;
 	}
 
 	public Boolean isNew() {

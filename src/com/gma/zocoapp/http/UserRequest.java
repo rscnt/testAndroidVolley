@@ -1,7 +1,14 @@
 package com.gma.zocoapp.http;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import android.util.Log;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.JsonRequest;
@@ -15,8 +22,8 @@ public class UserRequest extends JsonRequest<User> {
 	Gson gson = new Gson();
 
 	// GET - DELETE : Request
-	public UserRequest(User user, Boolean delete,
-			Listener<User> userListener, ErrorListener errorListener) {
+	public UserRequest(User user, Boolean delete, Listener<User> userListener,
+			ErrorListener errorListener) {
 		super((delete) ? Method.DELETE : Method.GET, user.getUrl(), null,
 				userListener, errorListener);
 		this.usrListener = userListener;
@@ -25,8 +32,8 @@ public class UserRequest extends JsonRequest<User> {
 	// POST - PUT : Request
 	public UserRequest(User user, Listener<User> userListener,
 			ErrorListener errorListener) {
-		super((user.getId() != null) ? Method.PUT : Method.POST, (user
-				.getId() != null) ? user.getUrl() : Res.getUrlUsers(),
+		super((user.getId() != null) ? Method.PUT : Method.POST,
+				(user.getId() != null) ? user.getUrl() : Res.getUrlUsers(),
 				user.toJSON(), userListener, errorListener);
 		this.usrListener = userListener;
 	}
@@ -47,4 +54,18 @@ public class UserRequest extends JsonRequest<User> {
 		usrListener.onResponse(user);
 	}
 
+	@Override
+	public void deliverError(VolleyError volleyError) {
+		Log.d(UserRequest.class.getCanonicalName(), volleyError.toString());
+	}
+
+	@Override
+	public Map<String, String> getHeaders() throws AuthFailureError {
+		Map<String, String> headers = new HashMap<String, String>();
+		Log.d(UserListRequest.class.getCanonicalName(),
+				ZocoClient.tkn.getAccess_token());
+		String auth = "Bearer " + ZocoClient.tkn.getAccess_token();
+		headers.put("Authorization", auth);
+		return headers;
+	}
 }

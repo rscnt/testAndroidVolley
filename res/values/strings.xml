@@ -6,5 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_user_list_view">UserListViewActivity</string>
     <string name="title_activity_user_detail">UserDetailActivity</string>
+    <string name="title_activity_example">ExampleActivity</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_facebook">FacebookActivity</string>
+    <string name="numero_de_seguidores">Numero de Seguidores</string>
+    <string name="logout_app">Salir</string>
 
 </resources>

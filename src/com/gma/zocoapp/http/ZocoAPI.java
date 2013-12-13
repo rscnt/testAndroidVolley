@@ -1,13 +1,20 @@
 package com.gma.zocoapp.http;
 
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.Request.Method;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.android.volley.toolbox.StringRequest;
 import com.gma.zocoapp.models.Product;
 import com.gma.zocoapp.models.ProductList;
+import com.gma.zocoapp.models.Token;
 import com.gma.zocoapp.models.User;
 import com.gma.zocoapp.models.UserList;
+import com.google.gson.Gson;
 
 //TODO: Implement a service that connect the api with activities
 public class ZocoAPI {
@@ -120,5 +127,31 @@ public class ZocoAPI {
 		Request<User> rqstPrdct = new UserRequest(product, productListener,
 				errorListener);
 		return rqstQueue.add(rqstPrdct);
+	}
+
+	public void setOAuthToken() {
+		StringRequest tknRqst = new ZocoTokenRequest(Method.POST,
+				ZocoClient.AccessTokenEndpoint, new Listener<String>() {
+
+					@Override
+					public void onResponse(String token) {
+						Gson gson = new Gson();
+						if (token != "") {
+							ZocoClient.tkn = gson.fromJson(token, Token.class);
+							Log.d(ZocoAPI.class.getCanonicalName() + " token: ",
+									ZocoClient.tkn.toJSON());	
+						}
+					}
+
+				}, new ErrorListener() {
+
+					@Override
+					public void onErrorResponse(VolleyError arg0) {
+						System.out.println("---------------------");
+						arg0.printStackTrace();
+						System.out.println("---------------------");
+					}
+				});
+		rqstQueue.add(tknRqst);
 	}
 }
