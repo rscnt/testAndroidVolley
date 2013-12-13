@@ -16,10 +16,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
+        <TextView
+            android:id="@+id/sign_in_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
         <com.google.android.gms.common.SignInButton
             android:id="@+id/google_plus_sign_in"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" >
+        </com.google.android.gms.common.SignInButton>
 
         <Button
             android:id="@+id/buttonViewProducts"
@@ -33,6 +40,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="new User" />
+
+        <Button
+            android:id="@+id/sign_out_button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Sign Out" />
+
+        <Button
+            android:id="@+id/revoke_access_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Revoke Access Button Name" />
     </LinearLayout>
 
     <ListView

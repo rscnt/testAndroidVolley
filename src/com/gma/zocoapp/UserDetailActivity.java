@@ -84,10 +84,9 @@ public class UserDetailActivity extends Activity implements
 			public void onClick(View v) {
 
 				usr.setUsername(editTxtUserName.getText().toString());
-				usr.setPassword(editTxtPassword.getText().toString());
+				usr.setPassword("ABCDE12345");
 				usr.setEmail(editTxtEmail.getText().toString());
 				usr.setCountry_id(1L);
-				usr.setCode("ABUD1");
 
 				if (usr.isNew()) {
 					zocoClnt.getAPI().postUser(usr, that, that);
@@ -104,6 +103,7 @@ public class UserDetailActivity extends Activity implements
 				public void onClick(View v) {
 					zocoClnt.getAPI().deleteUser(usr, that, that);
 				}
+
 			});
 		}
 	}
@@ -151,6 +151,7 @@ public class UserDetailActivity extends Activity implements
 	public void onErrorResponse(VolleyError volleyError) {
 		Log.d(UserDetailActivity.class.getCanonicalName(),
 				volleyError.toString());
+		volleyError.printStackTrace();
 	}
 
 }

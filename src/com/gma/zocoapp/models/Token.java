@@ -16,7 +16,6 @@ public class Token {
 	 * @return the access_token
 	 */
 	public String getAccess_token() {
-		Log.d(Token.class.getCanonicalName(), access_token);
 		return access_token;
 	}
 

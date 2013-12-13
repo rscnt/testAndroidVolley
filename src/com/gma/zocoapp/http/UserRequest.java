@@ -35,6 +35,7 @@ public class UserRequest extends JsonRequest<User> {
 		super((user.getId() != null) ? Method.PUT : Method.POST,
 				(user.getId() != null) ? user.getUrl() : Res.getUrlUsers(),
 				user.toJSON(), userListener, errorListener);
+		Log.d(UserRequest.class.getCanonicalName() + " POST ", user.toJSON());
 		this.usrListener = userListener;
 	}
 
@@ -57,6 +58,13 @@ public class UserRequest extends JsonRequest<User> {
 	@Override
 	public void deliverError(VolleyError volleyError) {
 		Log.d(UserRequest.class.getCanonicalName(), volleyError.toString());
+	}
+
+	@Override
+	public Map<String, String> getParams() throws AuthFailureError {
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("password", "123456ABCDEG");
+		return params;
 	}
 
 	@Override

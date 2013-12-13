@@ -226,7 +226,7 @@ public class User {
 	public String toJSON() {
 		Gson gson = new Gson();
 		System.out.println("\n" + gson.toJson(this) + "\n");
-		return gson.toJson(this);
+		return "{\"user\":" + gson.toJson(this) + "}";
 	}
 
 	public String getUrl() {
