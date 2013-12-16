@@ -13,5 +13,9 @@
     <string name="logout_app">Salir</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fb_app_id">1401881073387628</string>
+    <string name="fb_app_secret">40b6d6f8b4b12a1b8b07e0c40d5db539</string>
+    <string name="title_activity_dummy_main">DummyMainActivity</string>
+    <string name="title_activity_social_main">SocialMainActivity</string>
+    <string name="title_activity_facebook_object">FacebookObjectActivity</string>
 
 </resources>
