@@ -1,0 +1,52 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".SocialMainActivity" >
+
+    <com.facebook.widget.LoginButton
+        android:id="@+id/btn_face_auth"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/btn_gplus_auth_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </com.google.android.gms.common.SignInButton>
+
+    <Button
+        android:id="@+id/btn_log_out_gplus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Sign Out" />
+
+    <Button
+        android:id="@+id/btn_rvk_access_gplus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="Revoke Access Button Name" />
+
+    <TextView
+        android:id="@+id/txtFbStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Fb Status" />
+
+    <TextView
+        android:id="@+id/txtGpStatus"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Gp Status" />
+
+</LinearLayout>
